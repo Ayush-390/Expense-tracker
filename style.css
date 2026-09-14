@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+   box-sizing: border-box; /* width includes padding and border. */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+/*root: pseudo-class that targets the highest-level parent element. for CSS variable */
+:root {
+  --bg: #f0f2f5;
+  --surface: #ffffff;
+  --text: #1a1a2e;
+  --text-secondary: #6b7280;
+  --border: #e5e7eb;
+  --accent: #6366f1;
+  --accent-light: #ee42ff;
+  --success: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --radius: 16px;
+  --transition: 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+ [data-theme="dark"] {   /*Select any HTML element whose data-theme attribute has the value "dark". */
+  --bg: #0f0f1a;
+  --surface: #1a1a2e;
+  --text: #f0f0f5;
+  --text-secondary: #9ca3af;
+  --border: #2d2d44;
+  --accent: #818cf8;
+  --accent-light: #2d2d44;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background var(--transition), color var(--transition);
+  min-height: 100vh;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- APP CONTAINER --- */
+.app-container {
+  max-width: 1300px;
+  width: 100%;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  padding: 28px 30px 32px;
+  transition: background var(--transition), border var(--border), box-shadow var(--transition);
+}
