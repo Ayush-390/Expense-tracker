@@ -54,3 +54,68 @@ body {
   padding: 28px 30px 32px;
   transition: background var(--transition), border var(--border), box-shadow var(--transition);
 }
+/* Header */
+.app-header{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.app-header .brand i{
+    color: var(--accent);
+    font-size: 28px;
+}
+
+.header-actions{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.header-actions button{
+    background: var(--accent-light);
+    border: none;
+    color: var(--text);
+    padding: 10px 18px;
+    border-radius: 40px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.2s;
+    border: 1px solid transparent;
+    font-size: 14px;
+}
+.header-actions button:hover{
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.header-actions .theme-btn{
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 40px;
+    padding: 10px 14px;
+    font-size: 18px;
+}
+
+/* ---- Stats Cards ---- */
+.stats-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180, 1fr));
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.stat-card{
+    background: var(--bg);
+    padding: 18px 20px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    transition: background var(--transition), border var(--transition);
+}
+
