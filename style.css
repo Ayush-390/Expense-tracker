@@ -118,4 +118,47 @@ body {
     border: 1px solid var(--border);
     transition: background var(--transition), border var(--transition);
 }
+.stat-card .stat-label{
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
 
+.stat-card .stat-value{
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 4px;
+} 
+
+.stat-card .stat-value.income {color: var(--success);}
+.stat-card .stat-value.expense {color: var(--danger);}
+.stat-card .stat-value.balance {color: var(--accent);}
+
+/* ----- Main Grid ----- */
+.main-grid{
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 28px;
+}
+
+/* ----- LEFT COLUMN ----- */
+.left-col{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+/* Add Expense Form */
+.add-form {
+    background: var(--bg);
+    padding: 20px 22px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    transition: background var(--transition), border var(--transition);
+}
+
+.add-form h3 {
+    font-size: 16px;
+    font-weight: 600;
+}
