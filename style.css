@@ -161,4 +161,40 @@ body {
 .add-form h3 {
     font-size: 16px;
     font-weight: 600;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
+.form-row{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 12px;
+    align-items: end;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.form-group label{
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.form-group input, .form-group select{
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s;
+    width: 100%;
+}  
