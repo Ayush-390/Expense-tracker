@@ -229,3 +229,37 @@ body {
     transform: scale(1.04);
     filter: brightness(1.08);
 }
+/* CHART */
+.chart-card{
+    background: var(--bg);
+    padding: 18px 20px 16px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    transition: background var(--transition), border var(--transition);
+}
+
+.chart-card h3{
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.chart-container{
+    height: 180px;
+    position: relative;
+}
+
+/* ----- RIGHT COLUMN (Expenses List) ----- */
+.right-col{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.expenses-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
