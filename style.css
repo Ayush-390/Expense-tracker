@@ -57,6 +57,14 @@ body {
 /* Header */
 .app-header{
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+.app-header .brand{
+    display: flex;
     align-items: center;
     gap: 12px;
     font-size: 24px;
@@ -299,4 +307,140 @@ body {
     max-height: 440px;
     overflow-y: auto;
     padding-right: 4px;
+}
+.expenses-list{
+    padding-right: 4px;
+}
+
+.expenses-list::-webkit-scrollbar{
+    width: 5px;
+}
+
+.expenses-list::-webkit-scrollbar-thumb{
+    background: var(--border);
+    border-radius: 10px;
+}
+
+.expense-item{
+    background: var(--bg);
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    transition: 0.15s;
+    cursor: default;
+}
+
+.expense-item:hover{
+    border-color: var(--accent);
+    transform: translateX(3px);
+}
+
+.expense-item .expense-info{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+}
+.expense-item .expense-info .expense-meta {
+    font-size: 12px;
+    color: var(--text-secondary);
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.expense-item .expense-info .expense-meta .category-badge {
+    background: var(--accent-light);
+    padding: 1px 12px;
+    border-radius: 30px;
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.expense-item .expense-amount {
+    font-weight: 700;
+    font-size: 17px;
+    white-space: nowrap;
+    color: var(--danger);
+}
+
+.expense-item .expense-amount.income {
+    color: var(--success);
+}
+
+.expense-item .expense-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.expense-item .expense-actions button{
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 30px;
+    transition: 0.15s;
+    font-size: 14px;
+}
+
+.expense-item .expense-actions .edit-btn:hover{
+    color: var(--accent);
+    background: var(--accent-light);
+}
+
+.expense-item .expense-actions .delete-btn:hover{
+    color: var(--danger);
+    background: #fee2e2;
+}
+
+.no-expenses{
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 30px 0;
+    font-size: 15px;
+}
+/* Responsive */
+@media (max-width: 900px) {
+    .main-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .form-row{
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .form-row .btn-add{
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 500px) {
+    .app-container{
+        padding: 16px;
+    }
+
+    .form-row{
+        grid-template-columns: 1fr;
+    }
+
+    .form-row .btn-add{
+        grid-column: span 1;
+    }
+
+    .stats-grid{
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .expense-item{
+        flex-wrap: wrap;
+    }
+    .header-actions button span{
+        display: none;
+    }
 }
