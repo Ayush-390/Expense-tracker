@@ -46,19 +46,35 @@ addBtn.addEventListener('click', function() {
      // Create transaction card
     const div = document.createElement('div');
     div.classList.add('expense-item');
+     // Add income/expense class
+    div.classList.add(transaction.type);
 
     // Create information section
     const infoDiv = document.createElement('div');
-    infoDiv.classList.add('expense-info');
+    infoDiv.classList.add('expense-amount');
+    amountDiv.textContent = `₹${transaction.amount}`;
+    div.appendChild(amountDiv);
 
-    // Add transaction description
-    infoDiv.textContent = transaction.description;
+    
+     infoDiv.textContent =
+    `${transaction.description} - ${transaction.category}`;
 
-    // Add information section to transaction card
+    // Add information sec outside of transaction card--"Take infoDiv and make it a child of div."
     div.appendChild(infoDiv);
 
-    // Add transaction card to the expenses list
-    expensesList.appendChild(div);
 
+
+
+    // Create amount section
+    const amountDiv = document.createElement('div');
+    amountDiv.classList.add('expense-amount');
+
+    amountDiv.textContent = `₹${transaction.amount}`;ne
+
+    // Add amount section inside transaction card
+    div.appendChild(amountDiv);
+
+    // Add transaction card inside expenses list
+    expensesList.appendChild(div);
     
 });
