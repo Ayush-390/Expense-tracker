@@ -1,12 +1,5 @@
 // Store all transactions
-const transactions = [
-    {
-        description: "Uber",
-        amount: 250,
-        category: "Transport",
-        type: "expense"
-    }
-];
+const transactions = [];
 
 // Get HTML elements
 const descInput = document.getElementById('descInput');
@@ -83,6 +76,18 @@ addBtn.addEventListener('click', function() {
     const deleteBtn = document.createElement('button');
     deleteBtn.textContent = 'Delete';
     deleteBtn.classList.add('delete-btn');
+
+     // Delete transaction
+    deleteBtn.addEventListener('click', function() {
+
+    const index = transactions.findIndex(function(item) {
+        return item.id === transaction.id;
+    });
+
+    transactions.splice(index, 1);
+
+    div.remove();
+    });
 
     // Add buttons to actions container
     actionsDiv.appendChild(editBtn);
