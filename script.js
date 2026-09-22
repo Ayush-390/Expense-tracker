@@ -51,11 +51,7 @@ addBtn.addEventListener('click', function() {
 
     // Create information section
     const infoDiv = document.createElement('div');
-    infoDiv.classList.add('expense-amount');
-    amountDiv.textContent = `₹${transaction.amount}`;
-    div.appendChild(amountDiv);
-
-    
+    infoDiv.classList.add('expense-info');
      infoDiv.textContent =
     `${transaction.description} - ${transaction.category}`;
 
@@ -69,10 +65,31 @@ addBtn.addEventListener('click', function() {
     const amountDiv = document.createElement('div');
     amountDiv.classList.add('expense-amount');
 
-    amountDiv.textContent = `₹${transaction.amount}`;ne
+    amountDiv.textContent = `₹${transaction.amount}`;
 
-    // Add amount section inside transaction card
+     // Add amount section inside transaction card
     div.appendChild(amountDiv);
+
+    // Create actions container
+    const actionsDiv = document.createElement('div');
+    actionsDiv.classList.add('expense-actions');
+
+    // Create Edit button
+    const editBtn = document.createElement('button');
+    editBtn.textContent = 'Edit';
+    editBtn.classList.add('edit-btn');
+
+    // Create Delete button
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.classList.add('delete-btn');
+
+    // Add buttons to actions container
+    actionsDiv.appendChild(editBtn);
+    actionsDiv.appendChild(deleteBtn);
+
+    // Add action container inside transaction card
+    div.appendChild(actionsDiv);
 
     // Add transaction card inside expenses list
     expensesList.appendChild(div);
