@@ -77,6 +77,8 @@ function renderTransaction(transaction) {
         transactions.splice(index, 1);
 
         div.remove();
+         // Update statistics after deleting
+         updateStats();
     });
 
 
@@ -112,13 +114,6 @@ function calculateStats() {
     };
 
 }
-// Get calculated statistics
-const stats = calculateStats();
-
-// Update statistics on webpage
-totalIncome.textContent = stats.income;
-totalExpenses.textContent = stats.expenses;
-totalBalance.textContent = stats.balance;
 
 function updateStats() {
 
@@ -127,8 +122,11 @@ function updateStats() {
     totalIncome.textContent = stats.income;
     totalExpenses.textContent = stats.expenses;
     totalBalance.textContent = stats.balance;
-
 }
+
+updateStats();
+
+
 
 // Render existing transactions
 transactions.forEach(function(transaction) {
@@ -179,4 +177,6 @@ addBtn.addEventListener('click', function() {
 
     // Display transaction on webpage
     renderTransaction(transaction);
+
+    updateStats();
 });
