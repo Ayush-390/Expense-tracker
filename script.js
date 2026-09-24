@@ -120,6 +120,16 @@ totalIncome.textContent = stats.income;
 totalExpenses.textContent = stats.expenses;
 totalBalance.textContent = stats.balance;
 
+function updateStats() {
+
+    const stats = calculateStats();
+
+    totalIncome.textContent = stats.income;
+    totalExpenses.textContent = stats.expenses;
+    totalBalance.textContent = stats.balance;
+
+}
+
 // Render existing transactions
 transactions.forEach(function(transaction) {
     renderTransaction(transaction);
