@@ -19,6 +19,8 @@ const expensesList = document.getElementById('expensesList');
 const totalBalance = document.getElementById('totalBalance');
 const totalIncome = document.getElementById('totalIncome');
 const totalExpenses = document.getElementById('totalExpenses');
+// Filter
+const filterCategory = document.getElementById('filterCategory');
 
 
 // Render one transaction on the webpage
@@ -62,7 +64,7 @@ function renderTransaction(transaction) {
 
 
     // Create Delete button
-    const deleteBtn = document.createElement('button');
+const deleteBtn = document.createElement('button');
     deleteBtn.textContent = 'Delete';
     deleteBtn.classList.add('delete-btn');
 
@@ -123,16 +125,13 @@ function updateStats() {
     totalExpenses.textContent = stats.expenses;
     totalBalance.textContent = stats.balance;
 }
-
 updateStats();
-
 
 
 // Render existing transactions
 transactions.forEach(function(transaction) {
     renderTransaction(transaction);
 });
-
 
 
 // Add transaction when button is clicked
