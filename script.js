@@ -21,6 +21,7 @@ const totalIncome = document.getElementById('totalIncome');
 const totalExpenses = document.getElementById('totalExpenses');
 // Filter
 const filterCategory = document.getElementById('filterCategory');
+const filterType = document.getElementById('filterType');
 
 
 // Render one transaction on the webpage
@@ -127,6 +128,28 @@ function updateStats() {
 }
 updateStats();
 
+function filterTransactions() {
+
+    const selectedCategory = filterCategory.value;
+
+    const filteredTransactions = transactions.filter(function(transaction) {
+
+        if (selectedCategory === "all") {
+            return true;
+        }
+
+        return transaction.category === selectedCategory;
+    });
+
+    // Clear existing transaction cards
+    expensesList.innerHTML = "";
+
+    // Render only filtered transactions
+    filteredTransactions.forEach(function(transaction) {
+        renderTransaction(transaction);
+    });
+}
+
 
 // Render existing transactions
 transactions.forEach(function(transaction) {
@@ -178,4 +201,11 @@ addBtn.addEventListener('click', function() {
     renderTransaction(transaction);
 
     updateStats();
+});
+
+// Category filter event
+filterCategory.addEventListener('change', function() {
+
+    filterTransactions();
+
 });

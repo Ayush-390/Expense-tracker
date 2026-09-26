@@ -1,0 +1,27 @@
+[1mdiff --git a/script.js b/script.js[m
+[1mindex b37a07f..0d4c612 100644[m
+[1m--- a/script.js[m
+[1m+++ b/script.js[m
+[36m@@ -127,6 +127,22 @@[m [mfunction updateStats() {[m
+ }[m
+ updateStats();[m
+ [m
+[32m+[m[32mfunction filterTransactions() {[m
+[32m+[m
+[32m+[m[32m    const selectedCategory = filterCategory.value;[m
+[32m+[m
+[32m+[m[32m    const filteredTransactions = transactions.filter(function(transaction) {[m
+[32m+[m[32m         if (selectedCategory === "all") {[m
+[32m+[m[32m            return true;[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        return transaction.category === selectedCategory;[m
+[32m+[m
+[32m+[m[32m    });[m
+[32m+[m
+[32m+[m[32m    console.log(filteredTransactions);[m
+[32m+[m[32m}[m
+[32m+[m
+ [m
+ // Render existing transactions[m
+ transactions.forEach(function(transaction) {[m
