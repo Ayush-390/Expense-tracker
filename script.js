@@ -131,20 +131,25 @@ updateStats();
 function filterTransactions() {
 
     const selectedCategory = filterCategory.value;
+    const selectedType = filterType.value;
 
     const filteredTransactions = transactions.filter(function(transaction) {
 
-        if (selectedCategory === "all") {
-            return true;
-        }
+        const categoryMatches =
+            selectedCategory === "all" ||
+            transaction.category === selectedCategory;
 
-        return transaction.category === selectedCategory;
+        const typeMatches =
+            selectedType === "all" ||
+            transaction.type === selectedType;
+
+        return categoryMatches && typeMatches;
     });
 
     // Clear existing transaction cards
     expensesList.innerHTML = "";
 
-    // Render only filtered transactions
+    // Render filtered transactions
     filteredTransactions.forEach(function(transaction) {
         renderTransaction(transaction);
     });
@@ -205,6 +210,12 @@ addBtn.addEventListener('click', function() {
 
 // Category filter event
 filterCategory.addEventListener('change', function() {
+
+    filterTransactions();
+
+});
+// Type filter event
+filterType.addEventListener('change', function() {
 
     filterTransactions();
 
