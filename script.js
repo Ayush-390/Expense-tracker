@@ -57,6 +57,7 @@ function renderTransaction(transaction) {
     actionsDiv.classList.add('expense-actions');
 
 
+
     // Create Edit button
     // Create Edit button
 const editBtn = document.createElement('button');
@@ -98,8 +99,40 @@ editBtn.addEventListener('click', function() {
     transaction.description = newDescription.trim();
     transaction.amount = newAmount;
 
-    renderTransactions();
-    updateStats();
+    const newCategory = prompt(
+    "Enter new category:",
+    transaction.category
+);
+
+if (newCategory === null) {
+    return;
+}
+
+if (newCategory.trim() === "") {
+    console.log("Category is required");
+    return;
+}
+
+transaction.category = newCategory.trim();
+
+const newType = prompt(
+    "Enter type (income or expense):",
+    transaction.type
+);
+
+if (newType === null) {
+    return;
+}
+
+if (newType !== "income" && newType !== "expense") {
+    console.log("Enter either income or expense");
+    return;
+}
+
+transaction.type = newType;
+
+renderTransactions();
+updateStats();
 });
 
 
