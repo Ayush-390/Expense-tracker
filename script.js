@@ -36,8 +36,7 @@ function renderTransaction(transaction) {
     const infoDiv = document.createElement('div');
     infoDiv.classList.add('expense-info');
 
-    infoDiv.textContent =
-        `${transaction.description} - ${transaction.category}`;
+    infoDiv.textContent = `${transaction.description} - ${transaction.category}`;
 
     // Add information section inside transaction card
     div.appendChild(infoDiv);
@@ -59,10 +58,52 @@ function renderTransaction(transaction) {
 
 
     // Create Edit button
-    const editBtn = document.createElement('button');
-    editBtn.textContent = 'Edit';
-    editBtn.classList.add('edit-btn');
+    // Create Edit button
+const editBtn = document.createElement('button');
+editBtn.textContent = 'Edit';
+editBtn.classList.add('edit-btn');
 
+editBtn.addEventListener('click', function() {
+
+    const newDescription = prompt(
+        "Enter new description:",
+        transaction.description
+    );
+
+    if (newDescription === null) {
+        return;
+    }
+
+    const newAmountInput = prompt(
+        "Enter new amount:",
+        transaction.amount
+    );
+
+    if (newAmountInput === null) {
+        return;
+    }
+
+    const newAmount = Number(newAmountInput);
+
+    if (newDescription.trim() === "") {
+        console.log("Description is required");
+        return;
+    }
+
+    if (newAmount <= 0 || isNaN(newAmount)) {
+        console.log("Enter a valid amount");
+        return;
+    }
+
+    transaction.description = newDescription.trim();
+    transaction.amount = newAmount;
+
+    renderTransactions();
+    updateStats();
+});
+
+
+ 
 
     // Create Delete button
 const deleteBtn = document.createElement('button');
@@ -78,8 +119,7 @@ const deleteBtn = document.createElement('button');
         });
 
         transactions.splice(index, 1);
-
-        div.remove();
+        renderTransactions();
          // Update statistics after deleting
          updateStats();
     });
@@ -95,6 +135,8 @@ const deleteBtn = document.createElement('button');
     // Add transaction card to expenses list
     expensesList.appendChild(div);
 }
+
+
 
 function calculateStats() {
 
@@ -146,20 +188,23 @@ function filterTransactions() {
         return categoryMatches && typeMatches;
     });
 
-    // Clear existing transaction cards
-    expensesList.innerHTML = "";
-
-    // Render filtered transactions
-    filteredTransactions.forEach(function(transaction) {
-        renderTransaction(transaction);
-    });
+    return filteredTransactions;
 }
 
 
-// Render existing transactions
-transactions.forEach(function(transaction) {
+function renderTransactions() {
+
+    const filteredTransactions = filterTransactions();
+
+    expensesList.innerHTML = "";
+
+   // Render filtered transactions
+    filteredTransactions.forEach(function(transaction) {
     renderTransaction(transaction);
 });
+
+}
+renderTransactions();
 
 
 // Add transaction when button is clicked
@@ -203,20 +248,17 @@ addBtn.addEventListener('click', function() {
 
 
     // Display transaction on webpage
-    renderTransaction(transaction);
+    renderTransactions();
 
     updateStats();
 });
 
 // Category filter event
 filterCategory.addEventListener('change', function() {
-
-    filterTransactions();
-
+    renderTransactions();
 });
+
 // Type filter event
 filterType.addEventListener('change', function() {
-
-    filterTransactions();
-
+    renderTransactions();
 });
