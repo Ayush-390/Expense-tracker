@@ -15,6 +15,12 @@ const amountInput = document.getElementById('amountInput');
 const categorySelect = document.getElementById('categorySelect');
 const addBtn = document.getElementById('addBtn');
 const expensesList = document.getElementById('expensesList');
+// Theme toggle
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+// Chart
+const categoryChart = document.getElementById('categoryChart');
+
 // for Statistics
 const totalBalance = document.getElementById('totalBalance');
 const totalIncome = document.getElementById('totalIncome');
@@ -294,4 +300,21 @@ filterCategory.addEventListener('change', function() {
 // Type filter event
 filterType.addEventListener('change', function() {
     renderTransactions();
+});
+
+// Theme toggle event
+themeToggle.addEventListener('click', function() {
+
+    const currentTheme = document.body.getAttribute('data-theme');
+
+    if (currentTheme === 'dark') {
+        document.body.setAttribute('data-theme', 'light');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+    } else {
+        document.body.setAttribute('data-theme', 'dark');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+    }
+
 });
