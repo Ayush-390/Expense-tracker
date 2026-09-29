@@ -5,15 +5,7 @@ const savedTransactions = localStorage.getItem(STORAGE_KEY);
 
 const transactions = savedTransactions  //Use saved transactions if they exist; otherwise start with the sample Uber transaction
     ? JSON.parse(savedTransactions)
-    : [
-        {
-            id: Date.now(),
-            description: "Uber",
-            amount: 250,
-            category: "Transport",
-            type: "expense"
-        }
-    ];
+    : [];
 
 // Save transactions to localStorage
 function saveTransactions() {
@@ -32,6 +24,7 @@ const expensesList = document.getElementById('expensesList');
 // Theme toggle
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
+const clearAllBtn = document.getElementById('clearAllBtn');
 // Chart
 const categoryChart = document.getElementById('categoryChart');
 
@@ -42,6 +35,8 @@ const totalExpenses = document.getElementById('totalExpenses');
 // Filter
 const filterCategory = document.getElementById('filterCategory');
 const filterType = document.getElementById('filterType');
+
+
 
 
 // Render one transaction on the webpage
@@ -406,4 +401,15 @@ themeToggle.addEventListener('click', function() {
         themeIcon.classList.add('fa-sun');
     }
 
+});
+
+// Clear all transactions
+clearAllBtn.addEventListener('click', function() {
+
+    transactions.length = 0;
+
+    saveTransactions();
+    renderTransactions();
+    renderCategoryChart();
+    updateStats();
 });
