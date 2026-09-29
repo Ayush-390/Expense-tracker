@@ -138,6 +138,7 @@ if (newType !== "income" && newType !== "expense") {
 transaction.type = newType;
 
 renderTransactions();
+renderCategoryChart();
 updateStats();
 });
 
@@ -160,6 +161,7 @@ const deleteBtn = document.createElement('button');
         transactions.splice(index, 1);
         renderTransactions();
          // Update statistics after deleting
+         renderCategoryChart(); //for chart
          updateStats();
     });
 
@@ -196,8 +198,76 @@ function calculateStats() {
     expenses: expenses,
     balance: balance
     };
-
 }
+
+function calculateCategoryExpenses() {
+
+   
+    const categoryTotals = {};
+
+    transactions.forEach(function(transaction) {
+
+        if (transaction.type === "expense") {
+
+            if (categoryTotals[transaction.category]) {
+                categoryTotals[transaction.category] += transaction.amount;
+            } else {
+                categoryTotals[transaction.category] = transaction.amount;
+            }
+
+        }
+    });
+
+    return categoryTotals;
+}
+ function getCategoryChartData() {
+
+    const categoryTotals = calculateCategoryExpenses();
+
+    const labels = Object.keys(categoryTotals);  //keys
+    const values = Object.values(categoryTotals); //values
+
+    return {
+        labels: labels,
+        values: values
+    };
+}
+
+let categoryChartInstance = null;
+
+
+function renderCategoryChart() { //Create or update the expense-category doughnut chart.
+
+    const chartData = getCategoryChartData();//give keys, values
+
+    if (categoryChartInstance) {
+        categoryChartInstance.destroy(); //for updation of chart
+    }
+     if (chartData.labels.length === 0) {
+        categoryChartInstance = null;
+        return;
+    }
+
+    categoryChartInstance = new Chart(categoryChart, {  //"Create a chart inside the <canvas> we selected earlier."
+        type: 'doughnut',
+
+        data: {
+            labels: chartData.labels,
+
+            datasets: [{
+                data: chartData.values
+            }]
+        },
+
+        options: {
+            responsive: true
+        }
+    });
+}
+
+
+
+
 
 function updateStats() {
 
@@ -244,6 +314,7 @@ function renderTransactions() {
 
 }
 renderTransactions();
+renderCategoryChart();
 
 
 // Add transaction when button is clicked
@@ -285,11 +356,10 @@ addBtn.addEventListener('click', function() {
     // Store transaction in array
     transactions.push(transaction);
 
-
     // Display transaction on webpage
-    renderTransactions();
-
-    updateStats();
+renderTransactions();
+renderCategoryChart();
+updateStats(); 
 });
 
 // Category filter event
