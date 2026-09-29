@@ -14,7 +14,7 @@ const transactions = savedTransactions  //Use saved transactions if they exist; 
             type: "expense"
         }
     ];
-    
+
 // Save transactions to localStorage
 function saveTransactions() {
     localStorage.setItem(
@@ -151,6 +151,7 @@ if (newType !== "income" && newType !== "expense") {
 
 transaction.type = newType;
 
+saveTransactions();
 renderTransactions();
 renderCategoryChart();
 updateStats();
@@ -175,6 +176,7 @@ const deleteBtn = document.createElement('button');
         transactions.splice(index, 1);
         renderTransactions();
          // Update statistics after deleting
+         saveTransactions();
          renderCategoryChart(); //for chart
          updateStats();
     });
@@ -331,6 +333,8 @@ renderTransactions();
 renderCategoryChart();
 
 
+
+
 // Add transaction when button is clicked
 addBtn.addEventListener('click', function() {
 
@@ -369,6 +373,7 @@ addBtn.addEventListener('click', function() {
 
     // Store transaction in array
     transactions.push(transaction);
+    saveTransactions();
 
     // Display transaction on webpage
 renderTransactions();
