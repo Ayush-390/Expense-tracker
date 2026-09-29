@@ -1,13 +1,27 @@
-// Store all transactions
-const transactions = [
-    {
-        id: Date.now(),
-        description: "Uber",
-        amount: 250,
-        category: "Transport",
-        type: "expense"
-    }
-];
+const STORAGE_KEY = "expenseTrackerTransactions";
+
+// Load transactions from localStorage
+const savedTransactions = localStorage.getItem(STORAGE_KEY);
+
+const transactions = savedTransactions  //Use saved transactions if they exist; otherwise start with the sample Uber transaction
+    ? JSON.parse(savedTransactions)
+    : [
+        {
+            id: Date.now(),
+            description: "Uber",
+            amount: 250,
+            category: "Transport",
+            type: "expense"
+        }
+    ];
+    
+// Save transactions to localStorage
+function saveTransactions() {
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(transactions)
+    );
+}    
 
 // Get HTML elements
 const descInput = document.getElementById('descInput');
@@ -64,7 +78,7 @@ function renderTransaction(transaction) {
 
 
 
-    // Create Edit button
+   
     // Create Edit button
 const editBtn = document.createElement('button');
 editBtn.textContent = 'Edit';
