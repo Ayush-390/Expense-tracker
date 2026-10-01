@@ -1,11 +1,17 @@
 const STORAGE_KEY = "expenseTrackerTransactions";
-
+const THEME_KEY = "expenseTrackerTheme";
 // Load transactions from localStorage
 const savedTransactions = localStorage.getItem(STORAGE_KEY);
 
 const transactions = savedTransactions  //Use saved transactions if they exist; otherwise start with the sample Uber transaction
     ? JSON.parse(savedTransactions)
     : [];
+
+const savedTheme = localStorage.getItem(THEME_KEY); 
+if (savedTheme) {
+    document.body.setAttribute('data-theme', savedTheme);
+}   
+
 
 // Save transactions to localStorage
 function saveTransactions() {
