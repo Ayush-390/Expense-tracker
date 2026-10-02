@@ -86,41 +86,25 @@ editBtn.textContent = 'Edit';
 editBtn.classList.add('edit-btn');
 
 editBtn.addEventListener('click', function() {
+   const newDescription = prompt(
+    "Enter new description:",
+    transaction.description
+);
 
-    const newDescription = prompt(
-        "Enter new description:",
-        transaction.description
-    );
+if (newDescription === null) {
+    return;
+}
 
-    if (newDescription === null) {
-        return;
-    }
+const newAmountInput = prompt(
+    "Enter new amount:",
+    transaction.amount
+);
 
-    const newAmountInput = prompt(
-        "Enter new amount:",
-        transaction.amount
-    );
+if (newAmountInput === null) {
+    return;
+}
 
-    if (newAmountInput === null) {
-        return;
-    }
-
-    const newAmount = Number(newAmountInput);
-
-    if (newDescription.trim() === "") {
-        console.log("Description is required");
-        return;
-    }
-
-    if (newAmount <= 0 || isNaN(newAmount)) {
-        console.log("Enter a valid amount");
-        return;
-    }
-
-    transaction.description = newDescription.trim();
-    transaction.amount = newAmount;
-
-    const newCategory = prompt(
+const newCategory = prompt(
     "Enter new category:",
     transaction.category
 );
@@ -128,13 +112,6 @@ editBtn.addEventListener('click', function() {
 if (newCategory === null) {
     return;
 }
-
-if (newCategory.trim() === "") {
-    console.log("Category is required");
-    return;
-}
-
-transaction.category = newCategory.trim();
 
 const newType = prompt(
     "Enter type (income or expense):",
@@ -145,11 +122,37 @@ if (newType === null) {
     return;
 }
 
+
+// Validate everything BEFORE changing transaction
+
+const newAmount = Number(newAmountInput);
+
+if (newDescription.trim() === "") {
+    console.log("Description is required");
+    return;
+}
+
+if (newAmount <= 0 || isNaN(newAmount)) {
+    console.log("Enter a valid amount");
+    return;
+}
+
+if (newCategory.trim() === "") {
+    console.log("Category is required");
+    return;
+}
+
 if (newType !== "income" && newType !== "expense") {
     console.log("Enter either income or expense");
     return;
 }
 
+
+// Now everything is valid, so update the transaction
+
+transaction.description = newDescription.trim();
+transaction.amount = newAmount;
+transaction.category = newCategory.trim();
 transaction.type = newType;
 
 saveTransactions();
