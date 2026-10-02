@@ -380,6 +380,11 @@ addBtn.addEventListener('click', function() {
 renderTransactions();
 renderCategoryChart();
 updateStats(); 
+
+// Reset form
+descInput.value = "";
+amountInput.value = "";
+categorySelect.selectedIndex = 0;
 });
 
 // Category filter event
