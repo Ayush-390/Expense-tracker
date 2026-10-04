@@ -148,7 +148,7 @@ if (newType !== "income" && newType !== "expense") {
 }
 
 
-// Now everything is valid, so update the transaction
+// Now everything is valid, so now we update the transaction
 
 transaction.description = newDescription.trim();
 transaction.amount = newAmount;
