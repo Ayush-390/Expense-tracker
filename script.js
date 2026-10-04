@@ -42,6 +42,7 @@ const totalExpenses = document.getElementById('totalExpenses');
 const filterCategory = document.getElementById('filterCategory');
 const filterType = document.getElementById('filterType');
 
+const sortTransactions = document.getElementById('sortTransactions');
 
 
 
