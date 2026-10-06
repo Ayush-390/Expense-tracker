@@ -300,6 +300,39 @@ function updateStats() {
 }
 updateStats();
 
+function sortTransactionList(transactions) {
+
+    const selectedSort = sortTransactions.value;
+
+    const sortedTransactions = [...transactions];
+
+    if (selectedSort === "newest") {
+        sortedTransactions.sort(function(a, b) {
+            return b.id - a.id;
+        });
+    }
+
+    else if (selectedSort === "oldest") {
+        sortedTransactions.sort(function(a, b) {
+            return a.id - b.id;
+        });
+    }
+
+    else if (selectedSort === "highAmount") {
+        sortedTransactions.sort(function(a, b) {
+            return b.amount - a.amount;
+        });
+    }
+
+    else if (selectedSort === "lowAmount") {
+        sortedTransactions.sort(function(a, b) {
+            return a.amount - b.amount;
+        });
+    }
+
+    return sortedTransactions;
+}
+
 function filterTransactions() {
 
     const selectedCategory = filterCategory.value;
