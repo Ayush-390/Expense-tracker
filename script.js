@@ -358,11 +358,12 @@ function filterTransactions() {
 function renderTransactions() {
 
     const filteredTransactions = filterTransactions();
+    const sortedTransactions = sortTransactionList(filteredTransactions);
 
     expensesList.innerHTML = "";
 
    // Render filtered transactions
-    filteredTransactions.forEach(function(transaction) {
+   sortedTransactions.forEach(function(transaction) {
     renderTransaction(transaction);
 });
 
