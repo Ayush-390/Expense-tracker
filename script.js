@@ -358,13 +358,13 @@ function filterTransactions() {
 function renderTransactions() {
 
     const filteredTransactions = filterTransactions();
-    const sortedTransactions = sortTransactionList(filteredTransactions);
+    const sortedTransactions = sortTransactionList(filteredTransactions)//.;
 
     expensesList.innerHTML = "";
 
    // Render filtered transactions
    sortedTransactions.forEach(function(transaction) {
-    renderTransaction(transaction);
+    renderTransaction(transaction)//this;
 });
 
 }
@@ -434,6 +434,13 @@ filterCategory.addEventListener('change', function() {
 filterType.addEventListener('change', function() {
     renderTransactions();
 });
+
+
+ // Sort transactions when sort option changes
+sortTransactions.addEventListener('change', function() {
+    renderTransactions();
+});
+
 
 // Theme toggle event
 themeToggle.addEventListener('click', function() {
