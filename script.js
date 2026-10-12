@@ -394,10 +394,14 @@ addBtn.addEventListener('click', function() {
 
 
     // Validate amount
-    if (amount <= 0) {
-        console.log("Enter a valid amount");
-        return;
-    }
+    
+if (amountInput.value.trim() === "" ||
+    !Number.isFinite(amount) ||
+    amount <= 0) {
+    console.log("Enter a valid amount");
+    return;
+}
+
 
 
     // Create transaction object
